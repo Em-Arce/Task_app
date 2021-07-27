@@ -1,6 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "CreateCategories", type: :system
+RSpec.describe "CreateCategories", type: :system do
+  before do
+     driven_by(:rack_test)
+  end
 
   it 'creates category, saves and shows newly created category' do
     # visit root route
