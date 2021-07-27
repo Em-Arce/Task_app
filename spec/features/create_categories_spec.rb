@@ -10,6 +10,8 @@ RSpec.describe "CreateCategories", type: :system do
     visit '/'
     #click create category link
     click_link 'Create Category'
+    #visit category/new page
+    visit '/category/new'
     #fill in form with required info
     fill_in 'Name', with: 'This is a category'
     #click submit button
