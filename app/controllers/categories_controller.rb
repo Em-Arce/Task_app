@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+
   def index
   end
 
@@ -12,10 +13,15 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    if @category.save
-      redirect_to @category
-    else
-      render :new
+
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to @category, notice: "Category was successfully created." }
+        format.json { render :show, status: :created, location: @category }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -25,6 +31,7 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
+
     respond_to do |format|
       if @category.update(category_params)
         if true

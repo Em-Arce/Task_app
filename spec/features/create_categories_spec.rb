@@ -5,7 +5,7 @@ RSpec.describe "CreateCategories", type: :system do
      driven_by(:rack_test)
   end
 
-  it 'creates category, saves and shows newly created category' do
+  it 'for valid inputs' do
     # visit root route
     visit '/'
     #click create category link
@@ -18,5 +18,14 @@ RSpec.describe "CreateCategories", type: :system do
     click_button 'Create Category'
     #expect page to have the content submitted
     expect(page).to have_content('This is a category')
+  end
+
+  it 'for invalid inputs' do
+    visit '/'
+    click_link 'Create Category'
+    visit '/categories/new'
+    fill_in 'Name', with: ''
+    click_button 'Create Category'
+    expect(page).to have_content("Name can't be blank")
   end
 end
