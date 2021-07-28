@@ -13,3 +13,4 @@ RSpec.describe 'EditCategories', type: :system do
     expect(page).to have_content('This is a category edited')
   end
 end
+
