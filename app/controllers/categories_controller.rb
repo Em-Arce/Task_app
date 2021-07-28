@@ -19,6 +19,25 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    respond_to do |format|
+      if @category.update(category_params)
+        if true
+          format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+          format.json { render :show, status: :ok, location: @category }
+        else
+          format.html { render :edit }
+          format.json { render json: @category.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
   private
 
   def category_params
