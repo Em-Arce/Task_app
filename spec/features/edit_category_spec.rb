@@ -6,10 +6,10 @@ RSpec.describe 'EditCategories', type: :system do
   end
 
   it 'edits category, saves and shows edited category' do
-    category = Category.order('id').last
-    visit "/categories/#{category.id}/edit"
+    category = Category.create!(name: 'This is a category')
+    visit edit_category_path(id: category.id)
     fill_in 'Name', with: 'This is a category edited'
-    click_button 'Create Category'
+    click_button 'Update Category'
     expect(page).to have_content('This is a category edited')
   end
 end
