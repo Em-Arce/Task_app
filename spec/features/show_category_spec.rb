@@ -5,9 +5,14 @@ RSpec.describe 'Shows A Category', type: :system do
     driven_by(:rack_test)
   end
 
-  it 'shows a category' do
+  it 'when Edit is clicked redirects to Edit Page' do
     category = Category.create!(name: 'This is a category')
     visit category_path(id: category.id)
     expect(page).to have_content('This is a category')
+    page.find("Edit").click --> this also works
+    find_button('Edit').click
+    visit edit_category_path(id: category.id)
+    expect(page).to have_content('This is a category')
+    expect(page).to have_button('Update Category')
   end
 end
