@@ -29,7 +29,7 @@ RSpec.describe 'Shows A Category', type: :system do
    visit category_path(id: category.id)
     expect(page).to have_content('This is a category')
     click_link 'Delete'
-    visit category_path(id: category.id, method: destroy)
-    expect(page).to have_content('Are you sure?')
+    visit root_path
+    expect(page).not_to have_content('This is a category')
   end
 end
