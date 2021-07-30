@@ -1,4 +1,17 @@
-<h1>Categories#index</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
+<h1>Categories</h1>
+<ul>
+<% @categories.each do |category| %>
+  <li>
+    <%= category.name %>
+    <%= link_to 'Show', category %>
+    <%= link_to 'Edit', edit_category_path(category) %>
+    <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </li>
+<% end %>
+</ul>
+<div>
+  <%= link_to 'Create Category', new_category_path %>
+</div>
 
-<%= link_to "Create Category", new_category_path %>
+
+
