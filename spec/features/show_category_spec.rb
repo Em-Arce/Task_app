@@ -26,7 +26,7 @@ RSpec.describe 'Shows A Category', type: :system do
 
   it 'when Delete is clicked redirects to Delete Popup Page' do
     category = Category.create!(name: 'This is a category')
-   visit category_path(id: category.id)
+    visit category_path(id: category.id)
     expect(page).to have_content('This is a category')
     click_link 'Delete'
     visit root_path
