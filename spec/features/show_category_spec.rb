@@ -11,7 +11,7 @@ RSpec.describe 'Shows A Category', type: :system do
     expect(page).to have_content('This is a category')
     click_link 'Back'
     visit root_path
-    expect(page).to have_content('Categories#index')
+    expect(page).to have_content('Categories')
   end
 
   it 'when Edit is clicked redirects to Edit Page' do
