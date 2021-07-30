@@ -11,6 +11,9 @@ RSpec.describe 'EditCategories', type: :system do
     fill_in 'Name', with: 'This is a category edited'
     click_button 'Update Category'
     expect(page).to have_content('This is a category edited')
+
+    cat1 = Category.order("id").last
+    expect(cat1.name).to eq('This is a category edited')
   end
 end
 

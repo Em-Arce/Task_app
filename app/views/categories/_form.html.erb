@@ -1,12 +1,12 @@
 <%= form_with model: @category do |f| %>
-    <div id="single_category">
-        <%= f.label :name %><br>
-        <%= f.text_field :name %><br>
-        <% @category.errors.full_messages_for(:name).each do |message| %>
-          <div class="text-warning"><%= message %></div>
-        <% end %>
-    </div>
-    <div>
-       <%= f.submit %>
-    </div>
+  <div id="single_category">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <% @category.errors.full_messages_for(:name).each do |message| %>
+      <div class="text-warning"><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
 <% end %>
