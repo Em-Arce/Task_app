@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Create a category", type: :feature do
+RSpec.describe "Creates a category", type: :feature do
 
   it 'for valid inputs' do
     # visit index
@@ -8,7 +8,7 @@ RSpec.describe "Create a category", type: :feature do
     #click create category link
     click_link 'Create Category'
     #visit categories/new page
-    visit '/categories/new'
+    visit new_category_path
     #url must be in /categories/new
     expect(current_path).to eq new_category_path
     #fill in form with required info
@@ -26,7 +26,8 @@ RSpec.describe "Create a category", type: :feature do
   it 'for invalid inputs' do
     visit categories_path
     click_link 'Create Category'
-    visit '/categories/new'
+    visit new_category_path
+    expect(current_path).to eq new_category_path
     fill_in 'Name', with: ''
     click_button 'Create Category'
     expect(page).to have_content("Name can't be blank")
