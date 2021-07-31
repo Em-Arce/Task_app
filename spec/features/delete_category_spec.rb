@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Deletes a category', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
+RSpec.describe 'Deletes a category', type: :feature do
 
   it 'success' do
     Category.create!(name: 'This is a category')

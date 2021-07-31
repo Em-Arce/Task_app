@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Create a category", type: :system do
-  before do
-     driven_by(:rack_test)
-  end
+RSpec.describe "Create a category", type: :feature do
 
   it 'for valid inputs' do
     # visit root route
