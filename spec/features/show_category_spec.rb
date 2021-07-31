@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Shows A Category', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
+RSpec.describe 'Shows A Category', type: :feature do
 
   it 'when Back is clicked redirects to Root/Index Page' do
     category = Category.create!(name: 'This is a category')
@@ -24,7 +21,7 @@ RSpec.describe 'Shows A Category', type: :system do
     expect(page).to have_content('Name')
   end
 
-  it 'when Delete is clicked redirects to Delete Popup Page' do
+  it 'when Delete is clicked redirects to Root/Index Page' do
     category = Category.create!(name: 'This is a category')
     visit category_path(id: category.id)
     expect(page).to have_content('This is a category')

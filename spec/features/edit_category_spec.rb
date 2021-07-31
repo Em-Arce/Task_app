@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'EditCategories', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
+RSpec.describe 'EditCategories', type: :feature do
 
   it 'edits category, saves and shows edited category' do
     category = Category.create!(name: 'This is a category')
