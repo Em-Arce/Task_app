@@ -7,6 +7,13 @@
     <% end %>
   </div>
   <div>
+    <%= f.label :image %><br>
+    <%= f.text_field :image_url %><br>
+    <% @category.errors.full_messages_for(:image_url).each do |message| %>
+      <div class="text-warning"><%= message %></div>
+    <% end %>
+  </div>
+  <div>
     <%= f.submit %>
   </div>
 <% end %>
