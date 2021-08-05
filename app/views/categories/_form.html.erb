@@ -7,7 +7,7 @@
     <% end %>
   </div>
   <div>
-    <%= f.label :image %><br>
+    <%= f.label :image_url %><br>
     <%= f.text_field :image_url %><br>
     <% @category.errors.full_messages_for(:image_url).each do |message| %>
       <div class="text-warning"><%= message %></div>
