@@ -10,17 +10,13 @@ RSpec.describe 'Deletes a category', type: :feature do
     find("img[src='https://tinyurl.com/2vhaj485']")
     #use this if there are multiple buttons w/ same name in page else use click_link
     #first(:link, 'Delete').click
+    category_count = Category.count
     click_link 'Delete'
-    #uncomment sleep when test not in use
-    #sleep(1)
+    expect(Category.count).to eq(category_count - 1)
     expect(current_path).to eq categories_path
-
     expect(page).not_to have_content('Work')
-    #rspec method to check if record is deleted from db but not know if it is exact record
-    #expect { category.destroy }.to change { Category.count }.by(-1)
     #ActiveRecord methods to check if exact record is deleted from db
     expect { category.reload }.to raise_error(ActiveRecord::RecordNotFound)
     expect(Category.exists?(category.id)).to be_falsey
-    #expect(category.persisted?).to be_falsey
   end
 end
