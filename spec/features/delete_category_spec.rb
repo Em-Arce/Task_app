@@ -13,10 +13,11 @@ RSpec.describe 'Deletes a category', type: :feature do
     click_link 'Delete'
     sleep(1)
     expect(current_path).to eq categories_path
-    #rspec method to check if record is deleted from db
-    expect { category.destroy }.to change { Category.count }.by(-1)
-    #ActiveRecord methods to check if record is deleted from db
+    #rspec method to check if record is deleted from db but not know if it is exact record
+    #expect { category.destroy }.to change { Category.count }.by(-1)
+    #ActiveRecord methods to check if exact record is deleted from db
     expect { category.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    expect(Category.exists?(category.id)).to be_falsey
     #expect(category.persisted?).to be_falsey
   end
 end
