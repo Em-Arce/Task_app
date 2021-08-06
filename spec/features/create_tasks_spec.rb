@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Creates a task", type: :feature do
+let (:category) { Category.create(name: 'This is a category',
+    image_url:'https://tinyurl.com/2vhaj485') }
 
   it 'for valid inputs' do
-    # visit index
-    visit category_tasks_path
+    # visit specific category
+    visit category_path(id: category.id)
     #click create task link
-    click_link 'Create Task'
+    click_button 'Create Task'
     #visit tasks/new page
     visit new_category_task_path
     #url must be in /tasks/new
