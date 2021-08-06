@@ -14,8 +14,9 @@
     <% end %>
   </div>
   <div>
-    <%= f.label :priority %><br>
-    <%= f.select :priority, [['1', 'High'], ['2', 'Medium'], ['3', 'Low']] %><br>
+    <%= f.label :priority  %>
+    <span>(1:High, 2: Medium, 3:Low)</span><br>
+    <%= f.number_field :priority, in: 1.0..3.0, step: 1 %><br>
     <% @category.errors.full_messages_for(:priority).each do |message| %>
       <div class="text-warning"><%= message %></div>
     <% end %>
