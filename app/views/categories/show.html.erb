@@ -9,4 +9,11 @@
       method: :delete,
       data: { confirm: "Are you sure?" } %>
   </div>
+  <div>
+    <h2>Tasks</h2>
+    <%= render @category.tasks %>
+
+    <h2>Add new task</h2>
+    <%= render 'tasks/form' %>
+  </div>
 </div>
