@@ -12,8 +12,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% if task.persisted? %> <%# only display tasks saved in the database %>
+    <% @category.tasks.each do |task| %>
+      <tr>
         <td><%= link_to task.name %></td>
         <td><%= task.description %></td>
         <td><%= task.priority %></td>
@@ -24,8 +24,8 @@
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %>
         </td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 </div>
