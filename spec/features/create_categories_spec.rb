@@ -1,22 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe "Creates a category", type: :feature do
-  before(:each) do
-    user = User.create!(email: 'test@example.com', password: 'testtest')
+  let(:user) {User.create!(email: 'test@example.com', password: 'password')}
+
+  def login(user)
     visit home_index_path
     click_link 'Sign In'
-    fill_in 'user_email', with: 'test@example.com'
-    fill_in 'user_password', with: 'testtest'
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: user.password
     click_button 'Log in'
   end
 
-  it 'for valid inputs' do
+  before do
+    login(user)
     # visit categoriesindex
     visit categories_path
     #click create category link
     click_link 'Create Category'
     #visit categories/new page
     visit new_category_path
+  end
+
+  it 'for valid inputs' do
     #url must be in /categories/new
     expect(current_path).to eq new_category_path
     #fill in form with required info
@@ -24,7 +29,6 @@ RSpec.describe "Creates a category", type: :feature do
     fill_in 'Image url', with: 'https://tinyurl.com/2vhaj485'
     #click submit button (in form, it is button)
     click_button 'Create Category'
-    sleep(1)
     #expect page to have the contents submitted
     expect(page).to have_content('This is a category')
     #expect(page).to have_css("img[src*='https://tinyurl.com/2vhaj485']") ok
@@ -40,9 +44,6 @@ RSpec.describe "Creates a category", type: :feature do
   end
 
   it 'for invalid input (Name)' do
-    visit categories_path
-    click_link 'Create Category'
-    visit new_category_path
     expect(current_path).to eq new_category_path
     fill_in 'Name', with: ''
     click_button 'Create Category'
@@ -50,9 +51,6 @@ RSpec.describe "Creates a category", type: :feature do
   end
 
   it 'for invalid input (Image)' do
-    visit categories_path
-    click_link 'Create Category'
-    visit new_category_path
     expect(current_path).to eq new_category_path
     fill_in 'Image', with: ''
     click_button 'Create Category'
