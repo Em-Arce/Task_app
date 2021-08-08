@@ -1,0 +1,29 @@
+<div>
+  <h1><%= @task.name %></h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Deadline</th>
+        <th>Completed</th>
+        <th>Action</th>
+        <th>Action</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @task.description %></td>
+        <td><%= @task.priority %></td>
+        <td><%= @task.deadline.strftime("%d %b %Y") %></td>
+        <td><%= @task.completed %></td>
+        <td><%= link_to 'Back', category_tasks_path(@task.category, @task) %></td>
+        <td><%= link_to 'Edit', edit_category_task_path(@task.category, @task) %></td>
+        <td><%= link_to 'Delete', [@task.category, @task],
+                method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
