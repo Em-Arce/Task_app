@@ -7,18 +7,17 @@
         <th>Description</th>
         <th>Priority</th>
         <th>Action</th>
-        <th>Action</th>
       </tr>
     </thead>
     <tbody>
         <% @tasks.each do |task| %>
-          <% if task.user == current_user && task.completed == false %>
+          <% if task.user_id == current_user.id && task.completed == false %>
             <tr>
               <td><%= link_to task.name, [task.category, task] %></td>
               <td><%= task.description %></td>
               <td><%= task.priority %></td>
               <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
-              <td><%= link_to 'Delete', [task.category, task],
+              <td><%# link_to 'Delete', [task.category, task],
                       method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
@@ -36,18 +35,17 @@
         <th>Description</th>
         <th>Priority</th>
         <th>Action</th>
-        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
-        <% if task.completed == true %>
+        <% if task.user_id == current_user.id && task.completed == true %>
           <tr>
             <td><%= task.name %></td>
             <td><%= task.description %></td>
             <td><%= task.priority %></td>
             <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
-            <td><%= link_to 'Delete', [task.category, task],
+            <td><%# link_to 'Delete', [task.category, task],
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
@@ -56,6 +54,5 @@
   </table>
 </div>
 
-<div>
-  <%# link_to 'Create Task', new_category_task_path %>
-</div>
+<%# link_to 'Create Task', new_category_task_path %>
+
