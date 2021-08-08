@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_category, only: %i[show edit update destroy]
 
   def index
     @categories = Category.all
@@ -7,16 +8,16 @@ class CategoriesController < ApplicationController
     #@tasks_today = Category.where()
   end
 
-  def show
-    @category = Category.find(params[:id])
-  end
+  def show; end
 
   def new
-    @category = Category.new
+    #@category = Category.new
+    @category = current_user.categories.build
   end
 
   def create
-    @category = Category.new(category_params)
+    #@category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
 
     respond_to do |format|
       if @category.save
@@ -29,13 +30,9 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-    @category = Category.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @category = Category.find(params[:id])
-
     respond_to do |format|
       if @category.update(category_params)
           format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -48,7 +45,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
     respond_to do |format|
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
@@ -58,7 +54,11 @@ class CategoriesController < ApplicationController
 
   private
 
+  def set_category
+     @category = Category.find(params[:id])
+  end
+
   def category_params
-    params.require(:category).permit(:name, :image_url)
+    params.require(:category).permit(:name, :image_url, :user_id)
   end
 end
