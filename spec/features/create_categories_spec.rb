@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "Creates a category", type: :feature do
-
-
-
-  it 'for valid inputs' do
-    user = User.create!(email: 'bon@example.com', password: 'testtest')
+  before(:each) do
+    user = User.create!(email: 'test@example.com', password: 'testtest')
     visit home_index_path
     click_link 'Sign In'
-    fill_in 'user_email', with: 'bon@example.com'
+    fill_in 'user_email', with: 'test@example.com'
     fill_in 'user_password', with: 'testtest'
     click_button 'Log in'
+  end
+
+  it 'for valid inputs' do
     # visit categoriesindex
     visit categories_path
     #click create category link
