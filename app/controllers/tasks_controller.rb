@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  #before_action :correct_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_category, only: %i[create]
+  before_action :set_category, except: %i[index new]
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
@@ -28,13 +27,36 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @task.update(task_params)
+          format.html { redirect_to @task.category, notice: 'Task was successfully updated.' }
+          format.json { render :show, status: :ok, location: @task }
+      else
+          format.html { render :edit }
+          format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @task.destroy
+    respond_to do |format|
+      format.html { redirect_to @task.category, notice: 'Task was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     def set_category
       @category = Category.find(params[:category_id])
     end
 
     def set_task
-      @task = Task.where(user_id: current_user.id).find(params[:id])
+      @task = @category.tasks.find(params[:id])
     end
 
     def task_params
