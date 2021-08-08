@@ -1,31 +1,33 @@
 <div>
-  <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Priority</th>
-      <th>Deadline</th>
-      <th>Completed</th>
-      <th>Action</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @category.tasks.each do |task| %>
-      <tr>
-        <td><%= link_to task.name %></td>
-        <td><%= task.description %></td>
-        <td><%= task.priority %></td>
-        <td><%= task.deadline.strftime("%d %b %Y") %></td>
-        <td><%= task.completed %></td>
-        <td><%= link_to 'Edit', edit_category_task_path(task) %></td>
-        <td><%= link_to 'Delete', [task.category, task],
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Priority</th>
+          <th>Deadline</th>
+          <th>Completed</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @category.tasks.each do |task| %>
+          <% if task.user_id == current_user.id %>
+            <tr>
+              <td><%= link_to task.name, [task.category, task] %></td>
+              <td><%= task.description %></td>
+              <td><%= task.priority %></td>
+              <td><%= task.deadline.strftime("%d %b %Y") %></td>
+              <td><%= task.completed %></td>
+              <td><%= link_to 'Edit', edit_category_task_path(task) %></td>
+              <td><%= link_to 'Delete', [task.category, task],
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
 </div>
