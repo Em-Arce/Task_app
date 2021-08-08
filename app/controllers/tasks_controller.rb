@@ -1,8 +1,12 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  #before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :set_category, only: %i[create]
   before_action :set_task, only: %i[show edit update destroy]
+
+  def index
+    @tasks = Task.where(user_id: current_user.id, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(priority: :asc)
+  end
 
   def new
     @task = @category.tasks.build
@@ -13,11 +17,14 @@ class TasksController < ApplicationController
 
   def create
     @task = @category.tasks.create(task_params.merge(user_id: current_user.id))
-    #@task.user_id = current_user.id
-    if @task.save
-      redirect_to @task.category
-    else
-      render :new
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to @task.category, notice: "Task was successfully created." }
+        format.json { render :show, status: :created, location: @task.category }
+      else
+        format.html { redirect_to @task.category, notice: "Invalid inputs." }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -27,7 +34,7 @@ class TasksController < ApplicationController
     end
 
     def set_task
-      @task = Task.find(params[:id])
+      @task = Task.where(user_id: current_user.id).find(params[:id])
     end
 
     def task_params
