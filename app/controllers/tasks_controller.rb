@@ -8,11 +8,12 @@ class TasksController < ApplicationController
     @task = @category.tasks.build
   end
 
-  def show; end
+  def show
+  end
 
   def create
-    @task = @category.tasks.create(task_params)
-    @task.user_id = current_user.id
+    @task = @category.tasks.create(task_params.merge(user_id: current_user.id))
+    #@task.user_id = current_user.id
     if @task.save
       redirect_to @task.category
     else
