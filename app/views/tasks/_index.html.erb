@@ -9,7 +9,7 @@
             <p class="card-text">Due on <%= task.deadline.strftime("%d %b %Y") %></p>
             <p class="card-text"><%= task.description %></p>
             <div class="d-flex justify-content-evenly button-container">
-              <%= link_to 'Edit', edit_category_task_path(task), class: "btn btn-purple" %>
+              <%= link_to 'Edit', edit_category_task_path(task.category, task), class: "btn btn-purple" %>
               <%= link_to 'Delete', [task.category, task], class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
           </div>
