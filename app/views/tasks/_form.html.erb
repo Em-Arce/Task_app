@@ -6,42 +6,30 @@
     <div class="mb-4">
       <%= f.label :name %>
       <%= f.text_field :name, class: "form-control", id: "name" %>
-      <% @category.errors.full_messages_for(:name).each do |message| %>
-        <div class="text-warning"><%= message %></div>
-      <% end %>
     </div>
     <div>
     <div class="mb-4">
       <%= f.label :description %>
       <%= f.text_field :description, class: "form-control", id: "description" %>
-      <% @category.errors.full_messages_for(:description).each do |message| %>
-        <div class="text-warning"><%= message %></div>
-      <% end %>
     </div>
     <div class="mb-4">
       <%= f.label :priority %>
       <span>(1: High, 2: Medium, 3: Low)</span>
       <%= f.number_field :priority, in: 1.0..3.0, step: 1, class: "form-control", id: "priority" %>
-      <% @category.errors.full_messages_for(:priority).each do |message| %>
-        <div class="text-warning"><%= message %></div>
-      <% end %>
     </div>
     <div class="mb-4">
       <%= f.label :deadline %>
       <%= f.datetime_local_field :deadline, class: "form-control", id: "deadline", placeholder: "Deadline" %>
-      <% @category.errors.full_messages_for(:deadline).each do |message| %>
-        <div class="text-warning"><%= message %></div>
-      <% end %>
     </div>
     <div class="mb-4">
       <%= f.label :completed %><br>
       <%= f.select :completed, ['true', 'false'], selected: 'false', class: "form-control", id: "completed" %>
-      <% @category.errors.full_messages_for(:completed).each do |message| %>
-        <div class="text-warning"><%= message %></div>
-      <% end %>
     </div>
     <div class="mb-4">
       <%= f.submit :Submit, class: "btn btn-purple" %>
     </div>
   <% end %>
 </div>
+<%# f.label :user_id this is another way of passing data into task_params but hidden to user  %><br>
+<%# f.number_field :user_id, id: :task_user_id, value: current_user.id,
+  type: :hidden %>

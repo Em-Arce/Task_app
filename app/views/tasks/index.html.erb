@@ -1,0 +1,58 @@
+<div>
+  <h1>Tasks due today</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @tasks.each do |task| %>
+          <% if task.user_id == current_user.id && task.completed == false %>
+            <tr>
+              <td><%= link_to task.name, [task.category, task] %></td>
+              <td><%= task.description %></td>
+              <td><%= task.priority %></td>
+              <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
+              <td><%# link_to 'Delete', [task.category, task],
+                      method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h1>Tasks completed today</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <% if task.user_id == current_user.id && task.completed == true %>
+          <tr>
+            <td><%= task.name %></td>
+            <td><%= task.description %></td>
+            <td><%= task.priority %></td>
+            <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
+            <td><%# link_to 'Delete', [task.category, task],
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%# link_to 'Create Task', new_category_task_path %>
+
