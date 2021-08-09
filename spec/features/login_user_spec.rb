@@ -8,7 +8,7 @@ RSpec.describe 'Login', type: :feature do
         fill_in 'user_email', with: 'bon@example.com'
         fill_in 'user_password', with: 'testtest'
         click_button 'Log in'
-        expect(current_path).to eq categories_index_path
+        expect(current_path).to eq categories_path
         expect(page).to have_content('Categories')
     end
 

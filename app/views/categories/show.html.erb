@@ -1,19 +1,39 @@
-<div>
-  <div>
-    <img src=<%= @category.image_url %> alt="No image available" width="300rem" height="300rem">
-    <h1><%= @category.name %></h1><br>
-    <p class="p-2 btn-group btn-group-sm">
-    <%= link_to "Back", root_path(@category) %>
-    <%= link_to "Edit", edit_category_path(@category) %>
-    <%= link_to "Delete", category_path(@category),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
+<div class="d-flex">
+  <div class="tasks-container card shadow p-3 mb-5 bg-body rounded">
+    <div class="title">
+      <h2>Tasks</h2>
+    </div>
+    <%= render "tasks/index" %>
   </div>
   <div>
-    <h2>Tasks</h2>
-    <%= render "tasks/index" %>
-
-    <h2>Add new task</h2>
+  <div class="category-sidebar card shadow p-3 mb-5 bg-body rounded d-flex justify-content-center">
+    <div class="category-items flex-column">
+      <div class="d-flex justify-content-center">
+        <img src=<%= @category.image_url %> alt="No image available" id="category-image">
+      </div>
+      <div class="title">
+        <h1><%= @category.name %></h1>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="progress d-flex justify-content-center">
+          <%= percent_progress(@category.id) %>% complete
+          <div class="progress-bar" role="progressbar" style="width: <%= percent_progress(@category.id) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="category-button-container d-flex justify-content-evenly">
+        <%= link_to "Edit", edit_category_path(@category), class: "btn btn-purple" %>
+        <%= link_to "Back", categories_path, class: "btn btn-danger" %>
+      </div>
+    </div> 
+  </div>
+  <div class="task-sidebar card shadow p-3 mb-5 bg-body rounded">
     <%= render 'tasks/form' %>
   </div>
+  </div>
 </div>
+
+
+
+

@@ -1,33 +1,22 @@
-<div>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Priority</th>
-          <th>Deadline</th>
-          <th>Completed</th>
-          <th>Action</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @category.tasks.each do |task| %>
-          <% if task.user_id == current_user.id %>
-            <tr>
-              <td><%= link_to task.name, [task.category, task] %></td>
-              <td><%= task.description %></td>
-              <td><%= task.priority %></td>
-              <td><%= task.deadline.strftime("%d %b %Y") %></td>
-              <td><%= task.completed %></td>
-              <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
-              <td><%= link_to 'Delete', [task.category, task],
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' } %>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
+<div class="tasks-container">
+  <div class="d-flex justify-content-evenly flex-wrap">
+    <% @category.tasks.each do |task| %>
+      <% if task.user_id == current_user.id %>
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 15rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to task.name, [task.category, task], class: "category-title" %></h5>
+            <p class="card-text">Due on <%= task.deadline.strftime("%d %b %Y") %></p>
+            <p class="card-text"><%= task.description %></p>
+            <div class="d-flex justify-content-evenly button-container">
+              <%= link_to 'Edit', edit_category_task_path(task), class: "btn btn-purple" %>
+              <%= link_to 'Delete', [task.category, task], class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%# task.priority %>
+      <%# task.completed %>
+    <% end %>
+  </div>
 </div>
+

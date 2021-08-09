@@ -1,32 +1,35 @@
-<%= form_with model: [ @category, @category.tasks.build ] do |f| %>
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
+<div class="task-form-container">
+  <div class="title">
+    <h2>Add new task</h2>
   </div>
-  <div>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %><br>
-  </div>
-  <div>
-    <%= f.label :priority  %>
-    <span>(1:High, 2: Medium, 3:Low)</span><br>
-    <%= f.number_field :priority, in: 1.0..3.0, step: 1 %><br>
-  </div>
-  <div>
-    <%= f.label :deadline %><br>
-    <%= f.datetime_local_field :deadline %><br>
-  </div>
-  <div>
-    <%= f.label :completed %><br>
-    <%= f.select :completed, ['true', 'false'], selected: 'false' %><br>
-  </div>
-  <div>
-    <%# f.label :user_id this is another way of passing data into task_params but hidden to user  %><br>
-    <%# f.number_field :user_id, id: :task_user_id, value: current_user.id,
-      type: :hidden %>
-  </div>
-
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+  <%= form_with model: [ @category, @category.tasks.build ] do |f| %>
+    <div class="mb-4">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", id: "name" %>
+    </div>
+    <div>
+    <div class="mb-4">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control", id: "description" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :priority %>
+      <span>(1: High, 2: Medium, 3: Low)</span>
+      <%= f.number_field :priority, in: 1.0..3.0, step: 1, class: "form-control", id: "priority" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :deadline %>
+      <%= f.datetime_local_field :deadline, class: "form-control", id: "deadline", placeholder: "Deadline" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :completed %><br>
+      <%= f.select :completed, ['true', 'false'], selected: 'false', class: "form-control", id: "completed" %>
+    </div>
+    <div class="mb-4">
+      <%= f.submit :Submit, class: "btn btn-purple" %>
+    </div>
+  <% end %>
+</div>
+<%# f.label :user_id this is another way of passing data into task_params but hidden to user  %><br>
+<%# f.number_field :user_id, id: :task_user_id, value: current_user.id,
+  type: :hidden %>
