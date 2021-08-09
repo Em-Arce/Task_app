@@ -9,7 +9,7 @@ RSpec.describe "Register a new user", type: :feature do
     fill_in 'user_password_confirmation', with: 'testtest'
     click_button 'Sign up'
     expect(page).to have_content('Categories')
-    expect(current_path).to eq categories_index_path
+    expect(current_path).to eq categories_path
     user = User.order('id').last
     user_count = User.count
     expect(user.email).to eq('test@test.com')
@@ -89,7 +89,7 @@ RSpec.describe "Register a new user", type: :feature do
     fill_in 'user_password_confirmation', with: 'testtest'
     click_button 'Sign up'
     expect(page).to have_content("Categories")
-    expect(current_path).to eq categories_index_path
+    expect(current_path).to eq categories_path
     click_link 'Logout'
     click_link 'Sign Up'
     fill_in 'Email', with: 'test@test.com'

@@ -1,17 +1,30 @@
-<h1>Categories</h1>
-
-<% @categories.each do |category| %>
-  <div>
-    <img src=<%= category.image_url %> alt="No image available" width="300rem" height="300rem">
-      <%= link_to category.name, category %><br>
-      <%= link_to 'Edit', edit_category_path(category) %>
-      <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <div class="title">
+      <h1>Categories</h1>
+    </div>
+    <div>
+      <%= link_to 'Create New Category', new_category_path, class: "btn btn-purple" %>
+    </div>
   </div>
-<% end %>
 
-<div>
-  <%= link_to 'Create Category', new_category_path %>
+  <div class="categories-container">
+    <div class="d-flex justify-content-evenly flex-wrap">
+      <% @categories.each do |category| %>
+        <% if category.user_id == current_user.id %>
+          <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 24rem;">
+            <img src=<%= category.image_url %> class="card-img-top" alt="No image available" width="300rem" height="300rem">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to category.name, category, class: "category-title" %></h5>
+              <p class="card-text">Created by <%= get_user_name(category.user_id) %></p>
+              <div class="d-flex justify-content-evenly category-button-container">
+                <%= link_to 'Edit', edit_category_path(category), class: "btn btn-purple" %>
+                <%= link_to 'Delete', category, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-
-

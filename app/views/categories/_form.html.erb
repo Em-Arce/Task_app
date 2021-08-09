@@ -1,19 +1,28 @@
 <%= form_with model: @category do |f| %>
   <div id="single_category">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
+    <div class="form-floating mb-4">
+      <%= f.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Name" %>
+      <label for="floatingInput">Name</label>
+    </div>
     <% @category.errors.full_messages_for(:name).each do |message| %>
       <div class="text-warning"><%= message %></div>
     <% end %>
   </div>
   <div>
-    <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %><br>
+    <div class="form-floating mb-4">
+      <%= f.text_area :image_url, class: "form-control", id: "floatingTextarea", style: "height: 170px", placeholder: "Image URL" %>
+      <label for="floatingTextarea">Image URL</label>
+    </div>
     <% @category.errors.full_messages_for(:image_url).each do |message| %>
       <div class="text-warning"><%= message %></div>
     <% end %>
   </div>
-  <div>
-    <%= f.submit %>
+  <div class="d-flex justify-content-evenly button-container">
+    <%= f.submit :Submit, class: "btn btn-purple" %>
+    <%= link_to 'Back', categories_path, class: "btn btn-danger" %>
   </div>
 <% end %>
+
+  
+
+  

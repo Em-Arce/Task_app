@@ -1,3 +1,114 @@
-// Place all the styles related to the Categories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap";
+
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #454380;
+    &:hover {
+        color: #55529C;
+    }
+}
+
+.btn-navs {
+    margin: 10px 10px;
+}
+
+.categories-container {
+    margin: 30px 0;
+}
+
+.category-title {
+    color: #454380;
+    &:hover {
+        color: #55529C;
+    }
+}
+
+.task-title {
+    color: #454380;
+    &:hover {
+        color: #55529C;
+    }
+}
+
+.btn-peach {
+    background-color: #E58675;
+    color: #FFF;
+    &:hover {
+        color: #FFF;
+    }
+}
+
+.btn-purple {
+    background-color: #454380;
+    color: #FFF;
+    &:hover {
+        background-color: #55529C;
+        color: #FFF;
+    }
+}
+
+.btn-orange {
+    background-color: #F2A76A;
+    color: #FFF;
+    &:hover {
+        color: #FFF;
+    }
+}
+
+.form-container {
+    margin: 30px auto;
+}
+
+.button-container {
+    width: 100%;
+}
+
+.category-button-container {
+    width: 80%;
+    margin: 10px;
+}
+
+.task-form-container{
+    margin: 10px 20px;
+}
+
+.tasks-container {
+    margin: 10px 20px;
+}
+
+.task-sidebar {
+    width: 24rem;
+}
+
+.card {
+    margin: 10px;
+}
+
+.category-sidebar{
+    width: 24rem;
+}
+
+.category-items {
+    margin: 10px;
+}
+
+#category-image {
+    width: 90%;
+    height: auto;
+}
+
+.title {
+    margin: 10px 0;
+    text-align: center;
+    color: #454380;
+}
+
+.progress {
+    width: 90%;
+}

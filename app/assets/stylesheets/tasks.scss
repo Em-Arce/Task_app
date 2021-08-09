@@ -1,3 +1,47 @@
-// Place all the styles related to the Tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap";
+
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.task-title {
+    color: #454380;
+    &:hover {
+        color: #55529C;
+    }
+}
+
+.btn-peach {
+    background-color: #E58675;
+    color: #FFF;
+    &:hover {
+        color: #FFF;
+    }
+}
+
+.btn-purple {
+    background-color: #454380;
+    color: #FFF;
+    &:hover {
+        background-color: #55529C;
+        color: #FFF;
+    }
+}
+
+.btn-orange {
+    background-color: #F2A76A;
+    color: #FFF;
+    &:hover {
+        color: #FFF;
+    }
+}
+
+.task-form-container{
+    width: 24rem;
+}
