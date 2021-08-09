@@ -1,3 +1,4 @@
+<div class= "btn btn-info"><%= link_to 'Due Today', category_tasks_path(@category, @task) %></div>
 <div class="tasks-container">
   <div class="d-flex justify-content-evenly flex-wrap">
     <% @category.tasks.each do |task| %>
