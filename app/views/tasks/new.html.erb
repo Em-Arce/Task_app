@@ -1,5 +1,37 @@
 <div>
     <h1>New Task</h1>
 
-    <%=render "form" %>
+    <%= form_with model: [ @category, @task ] do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+  </div>
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %><br>
+  </div>
+  <div>
+    <%= f.label :priority  %>
+    <span>(1:High, 2: Medium, 3:Low)</span><br>
+    <%= f.number_field :priority, in: 1.0..3.0, step: 1 %><br>
+  </div>
+  <div>
+    <%= f.label :deadline %><br>
+    <%= f.datetime_local_field :deadline %><br>
+  </div>
+  <div>
+    <%= f.label :completed %><br>
+    <%= f.select :completed, ['true', 'false'], selected: 'false' %><br>
+  </div>
+  <div>
+    <%# f.label :category_id this is another way of passing data into task_params but hidden to user  %><br>
+    <%# f.number_field :category_id, id: :task.category_id, value: task.category_id,
+      type: :hidden %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+
 </div>

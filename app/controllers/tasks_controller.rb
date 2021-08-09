@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, except: %i[index new]
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_category, except: %i[index edit]
+  before_action :set_task, only: %i[show update destroy]
 
   def index
     @tasks = Task.where(user_id: current_user.id, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(priority: :asc)
@@ -28,6 +28,8 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @category = Category.find(params[:category_id])
+    @task = @category.tasks.find(params[:id])
   end
 
   def update
