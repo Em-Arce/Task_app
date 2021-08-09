@@ -46,5 +46,16 @@ RSpec.describe "Creates a task", type: :feature do
     expect(task1.user_id).to eq(user.id)
   end
 
-
+  it 'for invalid input' do
+    expect(current_path).to eq category_path(id: category.id)
+    fill_in 'Name', with: ''
+    fill_in 'Description', with: 'Walk with Pochi'
+    fill_in 'Priority', with: '1'
+    fill_in 'Deadline', with: '2021-08-20 05:59:02.287974000 +0000'
+    page.find('#task_completed option', :text => 'false').click
+    click_button 'Create Task'
+    #expect record not to be submitted and saved in db
+    expect(page).to have_content('Invalid inputs.')
+    expect(page).not_to have_content('Todo 1')
+  end
 end
