@@ -19,7 +19,6 @@ RSpec.describe 'Deletes a category', type: :feature do
 
   it 'success' do
     expect(current_path).to eq categories_path
-    visit category_path(category.id)
     #use this if there are multiple buttons w/ same name in page else use click_link
     #first(:link, 'Delete').click
     category_count = Category.count

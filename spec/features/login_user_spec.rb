@@ -51,7 +51,7 @@ RSpec.describe "Login form", type: :feature do
         visit home_index_path
         click_link 'Sign In'
         click_link 'Sign up'
-        expect(page).to have_content('Sign up')
+        expect(page).to have_content('Create an Account')
         expect(current_path).to eq '/users/sign_up'
     end
 

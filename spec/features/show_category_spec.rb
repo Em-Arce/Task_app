@@ -32,14 +32,6 @@ RSpec.describe 'Shows a category', type: :feature do
     expect(current_path).to eq edit_category_path(id: category.id)
     expect(page).to have_content('Edit Category')
     expect(page).to have_content('Name')
-    expect(page).to have_content('Image url')
-  end
-
-  it 'when Delete, redirects to Index Page' do
-    expect(current_path).to eq category_path(id: category.id)
-    click_link 'Delete'
-    visit categories_path
-    expect(current_path).to eq categories_path
-    expect(page).to have_content('Categories')
+    expect(page).to have_content('Image URL')
   end
 end
