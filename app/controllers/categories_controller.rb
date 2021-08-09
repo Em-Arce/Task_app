@@ -8,7 +8,9 @@ class CategoriesController < ApplicationController
     #@tasks_today = Category.where()
   end
 
-  def show; end
+  def show
+    @categories = Category.all
+  end
 
   def new
     #@category = Category.new
