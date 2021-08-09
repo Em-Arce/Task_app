@@ -20,7 +20,7 @@
               <td><%= task.priority %></td>
               <td><%= task.deadline.strftime("%d %b %Y") %></td>
               <td><%= task.completed %></td>
-              <td><%= link_to 'Edit', edit_category_task_path(task) %></td>
+              <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
               <td><%= link_to 'Delete', [task.category, task],
                           method: :delete,
                           data: { confirm: 'Are you sure?' } %>
