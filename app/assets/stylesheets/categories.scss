@@ -61,6 +61,12 @@ a {
     }
 }
 
+.btn-due {
+    position: absolute;
+    top: 26px;
+    right: 20px;
+}
+
 .form-container {
     margin: 30px auto;
 }
@@ -70,8 +76,10 @@ a {
 }
 
 .category-button-container {
-    width: 80%;
-    margin: 10px;
+    width: 100%;
+    margin: 20px 0;
+    align-self: center;
+    justify-self: center;
 }
 
 .task-form-container{
@@ -80,6 +88,7 @@ a {
 
 .tasks-container {
     margin: 10px 20px;
+    position: relative;
 }
 
 .task-sidebar {

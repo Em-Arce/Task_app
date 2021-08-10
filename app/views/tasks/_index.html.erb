@@ -1,11 +1,13 @@
-<div class= "btn btn-info"><%= link_to 'Due Today', category_tasks_path(@category, @task) %></div>
 <div class="tasks-container">
   <div class="d-flex justify-content-evenly flex-wrap">
     <% @category.tasks.each do |task| %>
       <% if task.user_id == current_user.id %>
         <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 15rem;">
           <div class="card-body">
-            <h5 class="card-title"><%= link_to task.name, [task.category, task], class: "category-title" %></h5>
+            <div>
+              <span class="badge btn-purple"><%= translate_priority(task.priority) %></span>
+            </div>
+            <h5 class="card-title task-title"><%= task.name %></h5>
             <p class="card-text">Due on <%= task.deadline.strftime("%d %b %Y") %></p>
             <p class="card-text"><%= task.description %></p>
             <div class="d-flex justify-content-evenly button-container">

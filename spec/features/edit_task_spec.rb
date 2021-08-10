@@ -29,14 +29,14 @@ RSpec.describe "Edits a task", type: :feature do
   it 'for valid inputs' do
     expect(current_path).to eq edit_category_task_path(category, task)
     #fill in form with required info
-    fill_in 'Name', with: 'Todo 1'
-    fill_in 'Description', with: 'Walk with Pochi edited'
-    fill_in 'Priority', with: '1'
-    fill_in 'Deadline', with: '2021-08-20 05:59:02.287974000 +0000'
+    fill_in 'name', with: 'Todo 1'
+    fill_in 'description', with: 'Walk with Pochi edited'
+    fill_in 'priority', with: '1'
+    fill_in 'deadline', with: '2021-08-20 05:59:02.287974000 +0000'
     #page.find('#task_deadline').click come back to this
     page.find('#task_completed option', :text => 'false').click
     #click submit button (in form, it is button)
-    click_on 'Update Task'
+    click_on 'Submit'
     #expect page to have the contents submitted
     expect(page).to have_content('This is a category')
     expect(page).to have_content('Walk with Pochi edited')
