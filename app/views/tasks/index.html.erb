@@ -1,58 +1,54 @@
-<div>
-  <h1>Tasks due today</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Priority</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
+<div class="d-flex justify-content-end">
+  <%= link_to 'Create Task', new_category_task_path, class: "btn btn-purple btn-navs" %>
+  <%= link_to 'Back', category_path(@category.id), class: "btn btn-danger btn-navs" %>
+</div>
+<div class="d-flex justify-content-evenly task-due-comtainer">
+  <div class="task-main-container card shadow p-3 mb-5 bg-body rounded">
+    <div class="title">
+      <h2>Tasks Due For Today</h2>
+    </div>
+    <div class="tasks-container">
+      <div class="d-flex justify-content-evenly flex-wrap">
         <% @tasks.each do |task| %>
           <% if task.user_id == current_user.id && task.completed == false %>
-            <tr>
-              <td><%= link_to task.name, [task.category, task] %></td>
-              <td><%= task.description %></td>
-              <td><%= task.priority %></td>
-              <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
-              <td><%# link_to 'Delete', [task.category, task],
-                      method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+            <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 15rem;">
+              <div class="card-body">
+                <div>
+                  <span class="badge btn-purple"><%= translate_priority(task.priority) %></span>
+                </div>
+                <h5 class="card-title task-title"><%= task.name %></h5>
+                <p class="card-text"><%= task.description %></p>
+                <div class="d-flex justify-content-evenly button-container">
+                  <%= link_to 'Edit', edit_category_task_path(task.category, task), class: "btn btn-purple" %>
+                </div>
+              </div>
+            </div>
           <% end %>
         <% end %>
-    </tbody>
-  </table>
-</div>
+      </div>
+    </div>
+  </div>
 
-<div>
-  <h1>Tasks completed today</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Priority</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tasks.each do |task| %>
-        <% if task.user_id == current_user.id && task.completed == true %>
-          <tr>
-            <td><%= task.name %></td>
-            <td><%= task.description %></td>
-            <td><%= task.priority %></td>
-            <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
-            <td><%# link_to 'Delete', [task.category, task],
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
+  <div class="task-side-container card shadow p-3 mb-5 bg-body rounded">
+    <div class="title">
+      <h2>Tasks Completed</h2>
+    </div>
+    <div class="tasks-container">
+      <div class="d-flex justify-content-evenly flex-wrap">
+        <% @tasks.each do |task| %>
+          <% if task.user_id == current_user.id && task.completed == true %>
+            <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 15rem;">
+              <div class="card-body">
+                <div>
+                  <span class="badge btn-purple"><%= translate_priority(task.priority) %></span>
+                </div>
+                <h5 class="card-title task-title"><%= task.name %></h5>
+                <p class="card-text"><%= task.description %></p>
+              </div>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to 'Create Task', new_category_task_path %>
-
