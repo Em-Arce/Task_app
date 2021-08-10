@@ -23,12 +23,7 @@ RSpec.describe 'Deletes a category', type: :feature do
     category_count = Category.count
     #use this if there are multiple buttons w/ same name in page else use click_link
     #first(:link, 'Delete').click
-    #after git merge 09 Aug, this did not work anymore: removed
-    #Delete button in show category page and retained in index but testing
-    #delete from index makes below commands return capybara error
     click_link 'Delete'
-    #find("#delete").click
-    #find("a[href='/categories/#{category.id}']").click
     expect(Category.count).to eq(category_count - 1)
 
     #ActiveRecord methods to check if exact record is deleted from db
