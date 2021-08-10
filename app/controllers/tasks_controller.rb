@@ -5,6 +5,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.where(user_id: current_user.id, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(priority: :asc)
+    @category = Category.find(params[:category_id])
   end
 
   def new
