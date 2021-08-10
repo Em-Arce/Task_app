@@ -1,7 +1,7 @@
 <%= form_with model: @category do |f| %>
   <div id="single_category">
     <div class="form-floating mb-4">
-      <%= f.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Name" %>
+      <%= f.text_field :name, class: "form-control", id: "Name", placeholder: "Name" %>
       <label for="floatingInput">Name</label>
     </div>
     <% @category.errors.full_messages_for(:name).each do |message| %>
@@ -10,7 +10,7 @@
   </div>
   <div>
     <div class="form-floating mb-4">
-      <%= f.text_area :image_url, class: "form-control", id: "floatingTextarea", style: "height: 170px", placeholder: "Image URL" %>
+      <%= f.text_area :image_url, class: "form-control", id: "Image url", style: "height: 170px", placeholder: "Image URL" %>
       <label for="floatingTextarea">Image URL</label>
     </div>
     <% @category.errors.full_messages_for(:image_url).each do |message| %>

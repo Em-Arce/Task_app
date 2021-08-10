@@ -16,7 +16,7 @@ RSpec.describe "Creates a category", type: :feature do
     # visit categoriesindex
     visit categories_path
     #click create category link
-    click_link 'Create Category'
+    click_link 'Create New Category'
     #visit categories/new page
     visit new_category_path
   end
@@ -28,7 +28,7 @@ RSpec.describe "Creates a category", type: :feature do
     fill_in 'Name', with: 'This is a category'
     fill_in 'Image url', with: 'https://tinyurl.com/2vhaj485'
     #click submit button (in form, it is button)
-    click_button 'Create Category'
+    click_button 'Submit'
     #expect page to have the contents submitted
     expect(page).to have_content('This is a category')
     #expect(page).to have_css("img[src*='https://tinyurl.com/2vhaj485']") ok
@@ -46,14 +46,14 @@ RSpec.describe "Creates a category", type: :feature do
   it 'for invalid input (Name)' do
     expect(current_path).to eq new_category_path
     fill_in 'Name', with: ''
-    click_button 'Create Category'
+    click_button 'Submit'
     expect(page).to have_content("Name can't be blank")
   end
 
   it 'for invalid input (Image)' do
     expect(current_path).to eq new_category_path
-    fill_in 'Image', with: ''
-    click_button 'Create Category'
+    fill_in 'Image url', with: ''
+    click_button 'Submit'
     expect(page).to have_content("Image url can't be blank")
   end
 end

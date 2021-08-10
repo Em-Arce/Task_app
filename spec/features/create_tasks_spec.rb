@@ -23,14 +23,14 @@ RSpec.describe "Creates a task", type: :feature do
     # visit specific category
     expect(current_path).to eq category_path(id: category.id)
     #fill in form with required info
-    fill_in 'Name', with: 'Todo 1'
-    fill_in 'Description', with: 'Walk with Pochi'
-    fill_in 'Priority', with: '1'
-    fill_in 'Deadline', with: '2021-08-20 05:59:02.287974000 +0000'
+    fill_in 'name', with: 'Todo 1'
+    fill_in 'description', with: 'Walk with Pochi'
+    fill_in 'priority', with: '1'
+    fill_in 'deadline', with: '2021-08-20 05:59:02.287974000 +0000'
     #page.find('#task_deadline').click come back to this
     page.find('#task_completed option', :text => 'false').click
     #click submit button (in form, it is button)
-    click_button 'Create Task'
+    click_button 'Submit'
     #expect page to have the contents submitted
     expect(page).to have_content('This is a category')
     expect(page).to have_content('Todo 1')
@@ -48,12 +48,12 @@ RSpec.describe "Creates a task", type: :feature do
 
   it 'for invalid input' do
     expect(current_path).to eq category_path(id: category.id)
-    fill_in 'Name', with: ''
-    fill_in 'Description', with: 'Walk with Pochi'
-    fill_in 'Priority', with: '1'
-    fill_in 'Deadline', with: '2021-08-20 05:59:02.287974000 +0000'
+    fill_in 'name', with: ''
+    fill_in 'description', with: 'Walk with Pochi'
+    fill_in 'priority', with: '1'
+    fill_in 'deadline', with: '2021-08-20 05:59:02.287974000 +0000'
     page.find('#task_completed option', :text => 'false').click
-    click_button 'Create Task'
+    click_button 'Submit'
     #expect record not to be submitted and saved in db
     expect(page).to have_content('Invalid inputs.')
     expect(page).not_to have_content('Todo 1')

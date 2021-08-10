@@ -6,12 +6,12 @@
             </div>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="form-floating mb-4">
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput", placeholder: "Email" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "user_email", placeholder: "Email" %>
                 <label for="floatingInput">Email</label>
               </div>
 
               <div class="form-floating mb-4">
-                <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "floatingInput", placeholder: "Password" %>
+                <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "user_password", placeholder: "Password" %>
                 <label for="floatingInput">Password</label>
               </div>
 

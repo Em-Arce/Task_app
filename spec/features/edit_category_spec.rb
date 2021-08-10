@@ -22,7 +22,7 @@ RSpec.describe 'Edits a category', type: :feature do
     fill_in 'Name', with: 'Work edited'
     fill_in 'Image url', with: 'https://tinyurl.com/sa9k2cep'
     #click submit button (in form, it is button)
-    click_button 'Update Category'
+    click_button 'Submit'
     visit category_path(id: category.id)
     expect(current_path).to eq category_path(id: category.id)
     expect(page).to have_content('Work edited')
@@ -36,14 +36,14 @@ RSpec.describe 'Edits a category', type: :feature do
   it 'for invalid input (Name)' do
     expect(current_path).to eq edit_category_path(id: category.id)
     fill_in 'Name', with: ''
-    click_button 'Update Category'
+    click_button 'Submit'
     expect(page).to have_content("Name can't be blank")
   end
 
   it 'for invalid input (Image url)' do
     expect(current_path).to eq edit_category_path(id: category.id)
     fill_in 'Image url', with: ''
-    click_button 'Update Category'
+    click_button 'Submit'
     expect(page).to have_content("Image url can't be blank")
   end
 end
